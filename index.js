@@ -1,22 +1,24 @@
-const express = require("express");
+const express = require('express');
 const port = process.env.PORT || 8000;
 const app = express();
-const cors = require("cors");
+const cors = require('cors');
 
 app.use(express.json());
 app.use(cors());
 
 //using router
-app.use("/", require("./routes/index.js"));
+app.use('/', require('./routes/index.js'));
 
 //connecting to database
-const db = require("./config/mongoose");
+const dbConnection = require('./config/sqlconnection');
+
+dbConnection.sync({ force: true, loggin: console.log }).then(function () {});
 
 app.listen(port, function (err) {
   if (err) {
-    console.log("Error in running server");
+    console.log('Error in running server');
     return;
   }
-  console.log("Server is running and up at port ", port);
+  console.log('Server is running and up at port ', port);
   return;
 });

@@ -1,40 +1,33 @@
-const mongoose = require("mongoose");
-
-// creating user model
-const userSchema = new mongoose.Schema({
-  role: {
-    type: String,
-    required: true,
+const Sequelize = require('sequelize');
+const connection = require('../config/sqlconnection');
+const User = connection.define('User', {
+  user_id: {
+    type: Sequelize.UUID,
+    primaryKey: true,
+    allowNull: false,
+    defaultValue: Sequelize.UUIDV4,
   },
-  function: {
-    type: String,
+  first_name: {
+    type: Sequelize.STRING,
+    allowNull: false,
   },
-  sub_function: {
-    type: String,
+  PAN_number: {
+    type: Sequelize.STRING,
+    unique: true,
+    allowNull: false,
   },
-  company: {
-    type: String,
-    required: true,
+  date_of_birth: {
+    type: Sequelize.STRING,
+    allowNull: false,
   },
-  core_skills: [{ type: String }],
-  soft_skills: [{ type: String }],
-  location: {
-    type: String,
-    required: true,
+  email: {
+    type: Sequelize.STRING,
+    unique: true,
+    allowNull: false,
   },
-  pincode: {
-    type: String,
-    required: true,
-  },
-  compensation: {
-    type: String,
-    required: true,
-  },
-  job_description: {
-    type: String,
-    required: true,
+  profile_image: {
+    type: Sequelize.STRING,
+    allowNull: false,
   },
 });
-
-const User = mongoose.model("User", userSchema);
 module.exports = User;
