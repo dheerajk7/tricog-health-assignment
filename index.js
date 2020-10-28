@@ -17,7 +17,7 @@ app.use('/', require('./routes/index.js'));
 const dbConnection = require('./config/sqlconnection');
 
 dbConnection
-  .sync({ loggin: console.log })
+  .sync({ force: true, loggin: console.log })
   .then(function () {
     console.log('Database Connected Successfully');
   })
