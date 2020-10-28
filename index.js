@@ -12,7 +12,14 @@ app.use('/', require('./routes/index.js'));
 //connecting to database
 const dbConnection = require('./config/sqlconnection');
 
-dbConnection.sync({ force: true, loggin: console.log }).then(function () {});
+dbConnection
+  .sync({ force: true, loggin: console.log })
+  .then(function () {
+    console.log('Database Connected Successfully');
+  })
+  .catch(function () {
+    console.log('Error in connecting to Database');
+  });
 
 app.listen(port, function (err) {
   if (err) {

@@ -1,9 +1,15 @@
 const Sequelize = require('sequelize');
+const env = require('./environment');
 
-const connection = new Sequelize('tricog_assignment_db', 'dheeraj', '', {
-  host: '127.0.0.1',
-  dialect: 'mysql',
-  operatorAliases: false,
-});
+const connection = new Sequelize(
+  env.database.name,
+  env.database.username,
+  env.database.password,
+  {
+    host: env.database.host,
+    dialect: 'mysql',
+    operatorAliases: false,
+  }
+);
 
 module.exports = connection;
