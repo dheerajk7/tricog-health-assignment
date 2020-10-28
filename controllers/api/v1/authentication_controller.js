@@ -1,6 +1,7 @@
 const User = require('../../../models/user');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const env = require('../../../config/environment');
 
 module.exports.createSession = async function (request, response) {
   try {
@@ -29,7 +30,7 @@ module.exports.createSession = async function (request, response) {
       return response.status(200).json({
         success: true,
         data: {
-          token: jwt.sign(user, 'tricog', { expiresIn: 10000 }),
+          token: jwt.sign(user, env.jwt_secret, { expiresIn: 10000 }),
         },
         message: 'Here is your token for authentication, keep it safe.',
       });

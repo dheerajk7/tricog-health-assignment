@@ -6,6 +6,10 @@ const cors = require('cors');
 app.use(express.urlencoded());
 app.use(cors());
 
+const passport = require('passport');
+const passportJWT = require('./config/passport-jwt-strategy');
+app.use(passport.initialize());
+
 //using router
 app.use('/', require('./routes/index.js'));
 

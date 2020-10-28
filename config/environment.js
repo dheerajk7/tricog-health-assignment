@@ -6,7 +6,10 @@ const development = {
     username: 'dheeraj',
     password: '',
   },
-  aws: {},
+  jwt_secret: 'tricog',
+  aws: {
+,
+  },
 };
 
 const production = {

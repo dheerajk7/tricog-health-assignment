@@ -53,24 +53,18 @@ module.exports.createUser = async function (request, response) {
   }
 };
 
-// getting all the jobs available
 module.exports.getUserProfile = async function (request, response) {
   try {
-    let user = await User.findAll();
-    let users = [];
-    for (let u of user) {
-      console.log(u);
-      delete u.dataValues.password;
-      console.log(u, 'after');
-      users.push(u);
-    }
+    console.log(request.user.user_id, 'request');
+    let user = await User.findOne({ where: { user_id: request.user.user_id } });
+    user = user.dataValues;
+    delete user.password;
     return response.status(200).json({
       success: true,
       message: 'User Profile Fetched Successfully',
-      user: users,
+      user: user,
     });
   } catch (err) {
-    console.log(err);
     return response.status(500).json({
       success: false,
       message: 'Internal Server Error',
