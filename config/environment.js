@@ -7,7 +7,12 @@ const development = {
     password: '',
   },
   jwt_secret: 'tricog',
-  aws: {},
+  aws: {
+    id: 'AKIAI775UTZQJMZDTAOA',
+    secret: '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',
+    bucket_name: 'tricog-assignment-images',
+    bucket_region: 'ap-south-1',
+  },
 };
 
 const production = {
@@ -18,6 +23,7 @@ const production = {
     username: process.env.DATABASE_USERNAME,
     password: process.env.DATABASE_PASSWORD,
   },
+  jwt_secret: process.env.JWT_SECRET,
   aws: {
     id: process.env.AWS_ID,
     secret: process.env.AWS_SECRET,
