@@ -18,6 +18,9 @@ const User = connection.define(
       type: Sequelize.STRING,
       unique: true,
       allowNull: false,
+      set(value) {
+        this.setDataValue('email', value.toLowerCase());
+      },
     },
     PAN_number: {
       type: Sequelize.STRING,

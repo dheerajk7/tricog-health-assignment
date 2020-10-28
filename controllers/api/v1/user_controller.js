@@ -1,4 +1,5 @@
 const User = require('../../../models/user');
+const Sequelize = require('sequelize');
 const singleUpload = require('../../../services/profile_image_upload').single(
   'profile_image'
 );
@@ -6,11 +7,17 @@ const singleUpload = require('../../../services/profile_image_upload').single(
 // creating new user
 module.exports.createUser = async function (request, response) {
   try {
-    let user = await User.findOne({ where: { email: request.body.email } });
+    let user = await User.findOne({
+      where: Sequelize.or(
+        { email: request.body.email.toLowerCase() },
+        { PAN_number: request.body.PAN_number }
+      ),
+    });
     if (user !== null) {
-      return response
-        .status(200)
-        .json({ success: true, message: 'User already exist' });
+      return response.status(200).json({
+        success: true,
+        message: 'User already exist either with email or PAN Number',
+      });
     }
 
     if (request.file === undefined) {
