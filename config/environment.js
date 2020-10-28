@@ -8,10 +8,10 @@ const development = {
   },
   jwt_secret: 'tricog',
   aws: {
-    id: 'AKIAI775UTZQJMZDTAOA',
-    secret: '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',
-    bucket_name: 'tricog-assignment-images',
-    bucket_region: 'ap-south-1',
+    id: '',
+    secret: '',
+    bucket_name: '',
+    bucket_region: '',
   },
 };
 

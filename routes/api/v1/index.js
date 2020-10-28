@@ -1,7 +1,8 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-
-router.use("/authentication", require("./authentication"));
-router.use("/user", require("./user"));
+const homeController = require('../../../controllers/api/v1/home_controller');
+router.get('/', homeController.home);
+router.use('/authentication', require('./authentication'));
+router.use('/user', require('./user'));
 
 module.exports = router;
