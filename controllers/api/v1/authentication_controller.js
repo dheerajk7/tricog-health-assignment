@@ -5,6 +5,17 @@ const env = require('../../../config/environment');
 
 module.exports.createSession = async function (request, response) {
   try {
+    if (
+      request.body.email === undefined ||
+      request.body.email.length === 0 ||
+      request.body.password === undefined ||
+      request.body.password.len === 0
+    ) {
+      return response.status(422).json({
+        success: false,
+        message: 'Email and Password are required',
+      });
+    }
     let user = await User.findOne({
       where: { email: request.body.email.toLowerCase() },
     });
