@@ -3,7 +3,6 @@ const port = process.env.PORT || 8000;
 const app = express();
 const cors = require('cors');
 
-app.use(express.json());
 app.use(cors());
 
 //using router
@@ -13,7 +12,7 @@ app.use('/', require('./routes/index.js'));
 const dbConnection = require('./config/sqlconnection');
 
 dbConnection
-  .sync({ force: true, loggin: console.log })
+  .sync({ loggin: console.log })
   .then(function () {
     console.log('Database Connected Successfully');
   })

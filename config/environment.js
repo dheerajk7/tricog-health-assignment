@@ -6,6 +6,7 @@ const development = {
     username: 'dheeraj',
     password: '',
   },
+  aws: {},
 };
 
 const production = {
@@ -15,6 +16,12 @@ const production = {
     host: process.env.DATABASE_HOST,
     username: process.env.DATABASE_USERNAME,
     password: process.env.DATABASE_PASSWORD,
+  },
+  aws: {
+    id: process.env.AWS_ID,
+    secret: process.env.AWS_SECRET,
+    bucket_name: process.env.AWS_BUCKET_NAME,
+    bucket_region: process.env.AWS_BUCKET_REGION,
   },
 };
 
