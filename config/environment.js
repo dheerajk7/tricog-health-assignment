@@ -7,9 +7,7 @@ const development = {
     password: '',
   },
   jwt_secret: 'tricog',
-  aws: {
-,
-  },
+  aws: {},
 };
 
 const production = {
